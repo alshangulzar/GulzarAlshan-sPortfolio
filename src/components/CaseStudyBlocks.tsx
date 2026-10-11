@@ -209,18 +209,16 @@ function CaseStudyBlock({ block }: { block: Block }) {
         return (
           <Reveal>
             <figure className="mx-auto" style={{ maxWidth: `${capPx}px` }}>
-              <div className="overflow-hidden rounded-2xl border border-line bg-white">
-                <Image
-                  src={block.src}
-                  alt={block.alt}
-                  width={d.w}
-                  height={d.h}
-                  quality={95}
-                  unoptimized
-                  sizes={`(min-width: 1024px) ${capPx}px, 100vw`}
-                  className="h-auto w-full"
-                />
-              </div>
+              <Image
+                src={block.src}
+                alt={block.alt}
+                width={d.w}
+                height={d.h}
+                quality={95}
+                unoptimized
+                sizes={`(min-width: 1024px) ${capPx}px, 100vw`}
+                className="h-auto w-full"
+              />
               {block.caption && (
                 <figcaption className="mt-3 text-sm text-ink-faint">
                   {block.caption}
@@ -298,18 +296,16 @@ function CaseStudyBlock({ block }: { block: Block }) {
                 const d = dims(img.src);
                 return (
                   <figure key={i}>
-                    <div className="overflow-hidden rounded-2xl border border-line bg-white">
-                      <Image
-                        src={img.src}
-                        alt={img.alt}
-                        width={d.w}
-                        height={d.h}
-                        quality={95}
-                        unoptimized
-                        sizes="(min-width: 640px) 45vw, 100vw"
-                        className="h-auto w-full"
-                      />
-                    </div>
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      width={d.w}
+                      height={d.h}
+                      quality={95}
+                      unoptimized
+                      sizes="(min-width: 640px) 45vw, 100vw"
+                      className="h-auto w-full"
+                    />
                     {img.caption && (
                       <figcaption className="mt-3 text-sm text-ink-faint">
                         {img.caption}

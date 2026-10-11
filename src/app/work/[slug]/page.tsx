@@ -79,6 +79,17 @@ export default async function CaseStudyPage({
               {project.hook}
             </p>
           )}
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline"
+            >
+              {project.liveUrl.label}
+              <span aria-hidden="true">↗</span>
+            </a>
+          )}
         </Reveal>
 
         <Reveal delay={0.1}>

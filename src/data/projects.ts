@@ -71,6 +71,7 @@ export interface Project {
   timeline: string;
   client: string;
   status?: string;
+  liveUrl?: { href: string; label: string };
   stats?: { value: string; label: string }[];
   coverImage: { src: string; alt: string };
   coverOrientation?: "landscape" | "portrait";
@@ -711,13 +712,40 @@ export const projects: Project[] = [
     blocks: [
       {
         type: "text",
-        heading: "Background and motivation",
+        eyebrow: "Background",
         paragraphs: [
           "I created Lighthouse to give people access to an extensive library with minimal friction. After surveying people about their reading habits, I found that a large number of people run into problems with existing book apps and stop using them soon after — the opportunity wasn't more books, it was fewer obstacles.",
         ],
       },
       {
         type: "list",
+        eyebrow: "Scope",
+        heading: "What I was responsible for",
+        items: [
+          "Market research and competitive analysis",
+          "User survey, personas, and empathy and journey mapping",
+          "Storyboarding and a full user-flow diagram",
+          "Low-fi wireframes, alignment and grid, and a style guide",
+          "Hi-fi design and a working prototype",
+        ],
+      },
+      {
+        type: "text",
+        eyebrow: "Design process",
+        heading: "Design thinking",
+        paragraphs: [
+          "I worked the project through five stages — Empathize, Define, Ideate, Design, Test — rather than jumping straight to screens.",
+        ],
+      },
+      {
+        type: "image",
+        src: "/images/lighthouse/group264.png",
+        alt: "Design thinking process diagram: Empathize, Define, Ideate, Design, Test",
+        fit: "contain",
+      },
+      {
+        type: "list",
+        eyebrow: "Market research",
         heading: "Problems → solutions",
         items: [
           "Buying books is costly → one-click purchase from within the app",
@@ -728,28 +756,147 @@ export const projects: Project[] = [
       },
       {
         type: "text",
-        heading: "Competitive analysis",
+        eyebrow: "Competitive analysis",
         paragraphs: [
-          "I researched competitors in the App Store and catalogued what worked and what didn't. Strong apps used one-click purchasing, clearly categorized catalogs, and short onboarding walkthroughs. Weaker ones buried genres under image-heavy catalogs, made subscriptions hard to cancel, or forced sign-up before any browsing.",
+          "I researched competitors in the App Store and catalogued what worked and what didn't, so my own decisions traced back to a real gap rather than a guess.",
+        ],
+      },
+      {
+        type: "image",
+        src: "/images/lighthouse/group152.png",
+        alt: "Three screens from a competitor book app: a search grid of book covers, a genre list over photo backgrounds, and an audiobook detail page",
+        caption: "Competitor 1 — search, genre browsing, and an audiobook detail page.",
+        fit: "contain",
+      },
+      {
+        type: "list",
+        heading: "What it got right",
+        items: [
+          "You can save your time by purchasing books from the app just in one click.",
+          "Wide variety of books divided into categories. Easy to find new books.",
+          "A player that explains how to use the app.",
+        ],
+      },
+      {
+        type: "list",
+        heading: "Where it fell short",
+        items: [
+          "Catalog is overloaded with images, hence it is arduous to read genres' names.",
+          "Users struggle with cancelling their subscriptions.",
+          "You cannot use the app unless you sign up.",
+        ],
+      },
+      {
+        type: "image",
+        src: "/images/lighthouse/group265.png",
+        alt: "Three screens from a second competitor book app: a bestseller list, a category grid, and an empty 'My books' state",
+        caption: "Competitor 2 — bestsellers, category browsing, and an empty bookshelf state.",
+        fit: "contain",
+      },
+      {
+        type: "list",
+        heading: "What it got right",
+        items: [
+          "Simple, pleasant design with big headings and moderate contrast.",
+          "A clear hierarchy that's easy to navigate, with clear icons and interesting photography.",
+        ],
+      },
+      {
+        type: "list",
+        heading: "Where it fell short",
+        items: [
+          "Book descriptions are overloaded, which significantly complicates understanding what the book is about.",
+          "Some parts of the application are difficult to navigate.",
+          "A lot of books load for a long time.",
+        ],
+      },
+      {
+        type: "quote-grid",
+        eyebrow: "User research",
+        heading: "Notable comments from users",
+        quotes: [
+          "In review section writes “request failed”. It is important for me to read reviews before.",
+          "I took a free trial month and canceled the automatic subscription, but the program still calculated the money for the trial period.",
+          "The interface is very confusing and not user-friendly.",
+          "The notifications are inconsistent; sometimes I get them, and sometimes I don't.",
+          "I love the personalized recommendations; they always match my interests.",
+          "Offline reading mode is a lifesaver for my daily commute.",
+          "The app frequently loses my place in the book, which is really frustrating.",
+        ],
+      },
+      {
+        type: "text",
+        eyebrow: "Survey",
+        heading: "What people told us",
+        paragraphs: [
+          "The research showed that book apps in the App Store have real, fixable problems — the opportunity was in making an existing category work better, not inventing a new one. To ground that, I surveyed people who use book apps directly.",
+        ],
+      },
+      {
+        type: "image",
+        src: "/images/lighthouse/group267.png",
+        alt: "User survey results: pie charts for age range, gender, willingness to buy paper books, and app usage frequency, plus tag clouds for favorite e-book qualities and most important app features",
+        fit: "contain",
+      },
+      {
+        type: "image",
+        src: "/images/lighthouse/group272.png",
+        alt: "Reading-habit statistics: 35% of the world read more due to coronavirus, 75% of US citizens read at least a book in the last year, 30% of Americans read e-books instead of paperback, people aged 15-44 read 10 minutes or less per day on average, and just 6 minutes of daily reading matters for children's development",
+        caption: "Supporting research on reading habits, from outside sources.",
+        fit: "contain",
+      },
+      {
+        type: "text",
+        eyebrow: "User persona",
+        heading: "Who I designed for",
+        paragraphs: [
+          "Alice Collins is an ambitious writer working in advertising. Between work, yoga, and teaching English to foreign students, she wants to read more but rarely finds the time — she needs an app that makes reading and buying books convenient enough to fit into what's left of her day.",
         ],
       },
       {
         type: "quote",
-        quote:
-          "I love the personalized recommendations; they always match my interests. Offline reading mode is a lifesaver for my daily commute.",
-        attribution: "From user review research",
+        quote: "It's the possibility of having a dream come true that makes life interesting.",
+        attribution: "Alice Collins, 48 — Austin, TX",
       },
       {
-        type: "quote",
-        quote:
-          "The app frequently loses my place in the book, which is really frustrating.",
-        attribution: "From user review research",
+        type: "image",
+        src: "/images/lighthouse/group277.png",
+        alt: "Persona card for Alice Collins, 48, a writer in Austin, Texas, listing her goals and pains",
+        fit: "contain",
       },
       {
         type: "text",
-        heading: "Research, flows, and wireframes",
+        eyebrow: "Empathy map",
+        heading: "Getting inside Alice's head",
         paragraphs: [
-          "The process moved from a user survey and persona through an empathy map, journey map, and user flow, into a style guide, wireframes, and a working prototype covering onboarding, the home feed, the purchase flow, and a personal bookshelf.",
+          "Before mapping her journey, I mapped what Alice says and does, sees, thinks and feels, and hears — to separate what she says she wants from what's actually driving her.",
+        ],
+      },
+      {
+        type: "image",
+        src: "/images/lighthouse/group205.png",
+        alt: "Empathy map for Alice: says and does, sees, thinks and feels, and hears",
+        fit: "contain",
+      },
+      {
+        type: "text",
+        eyebrow: "Journey mapping",
+        heading: "Searching, reading, commenting",
+        paragraphs: [
+          "I mapped Alice's actions, thoughts, and the opportunities at each stage, from first deciding to find a book through to posting a review.",
+        ],
+      },
+      {
+        type: "image",
+        src: "/images/lighthouse/group279.png",
+        alt: "User journey map across five stages — searching for a book, reading/listening/buying, and commenting — with actions, thoughts, and opportunities at each step",
+        fit: "contain",
+      },
+      {
+        type: "text",
+        eyebrow: "User flow",
+        paragraphs: [
+          "From there I mapped the full flow — login and registration branching into home, search, bookshelf, book club, and profile — so every screen I designed had a clear place in the whole app.",
         ],
       },
       {
@@ -757,12 +904,77 @@ export const projects: Project[] = [
         src: "/images/lighthouse/group280.png",
         alt: "Full user flow diagram for the Lighthouse app covering login, registration, home, search, bookshelf, book club, and profile",
         caption: "End-to-end user flow, from onboarding through every core tab.",
+        fit: "contain",
+      },
+      {
+        type: "text",
+        eyebrow: "Style guide",
+        heading: "Type, color, and imagery",
+        paragraphs: [
+          "The primary typeface is Lufga, a clean, modern sans-serif — Bold for headlines and subheadings, Regular and Medium for body text. The palette leans on a soft, warm yellow for cheerfulness and friendliness, paired with a purple that reads as creative and a little luxurious. Imagery follows the same palette: warm, high-quality photography that reads as calm and inspired rather than staged.",
+        ],
+      },
+      {
+        type: "image",
+        src: "/images/lighthouse/group281.png",
+        alt: "Style guide showing the Lufga typeface at four weights, a five-color palette (plum, cream, yellow, charcoal, gray), and four mood photographs",
+        fit: "contain",
+      },
+      {
+        type: "text",
+        eyebrow: "Wireframes",
+        heading: "Low-fidelity first",
+        paragraphs: [
+          "Before any visual design, I laid out the home feed, an author page, category browsing, the bookshelf's quotes tab, and podcast discovery as plain gray-box wireframes — structure and hierarchy first, styling later.",
+        ],
+      },
+      {
+        type: "image",
+        src: "/images/lighthouse/group418.png",
+        alt: "Low-fidelity wireframes for the home feed, author page, categories, bookshelf quotes tab, and podcast discovery",
+        fit: "contain",
+      },
+      {
+        type: "text",
+        eyebrow: "Hi-fi design",
+        heading: "From wireframe to working prototype",
+        paragraphs: [
+          "The wireframes became a full prototype: onboarding and genre selection, a home feed with quotes and trending books, an author page, a book detail page, a bookshelf with a dedicated quotes tab, and a purchase flow.",
+        ],
+      },
+      {
+        type: "image",
+        src: "/images/lighthouse/group257.png",
+        alt: "Hi-fidelity onboarding flow: welcome screen, account creation, genre selection, book selection, and joining a book club",
+        caption: "Onboarding: welcome, account creation, genre and book picks, and joining a book club.",
+        fit: "contain",
+      },
+      {
+        type: "image",
+        src: "/images/lighthouse/group420.png",
+        alt: "Hi-fidelity home feed, quotes list, author page, book detail page, and popular podcasts screen",
+        caption: "The home feed, quotes, an author page, a book detail page, and podcasts.",
+        fit: "contain",
+      },
+      {
+        type: "image",
+        src: "/images/lighthouse/group421.png",
+        alt: "Hi-fidelity bookshelf screens: a book list grid, a quotes tab, and a single quote detail with tags",
+        caption: "The bookshelf — book list, quotes, and a single quote's detail view.",
+        fit: "contain",
       },
       {
         type: "image",
         src: "/images/lighthouse/group423.png",
         alt: "Three high-fidelity Lighthouse screens for the purchase flow: address, order summary, and payment",
         caption: "The purchase flow — address, order summary, and payment.",
+        fit: "contain",
+      },
+      {
+        type: "image",
+        src: "/images/lighthouse/lighthouse.png",
+        alt: "Illustration of a lighthouse rising from an open book, waves breaking against its pages",
+        fit: "contain",
       },
     ],
     result: [
@@ -781,6 +993,7 @@ export const projects: Project[] = [
     team: "Research team",
     timeline: "Academic research project",
     client: "Arizona State University — Julie Ann Wrigley Global Futures Laboratory",
+    liveUrl: { href: "https://azwaterbot.org/", label: "Visit the live Waterbot" },
     coverImage: {
       src: "/images/waterbot/thumb.png",
       alt: "Arizona Water Chatbot interface shown on a laptop",
@@ -796,51 +1009,132 @@ export const projects: Project[] = [
     blocks: [
       {
         type: "text",
-        heading: "Background and motivation",
+        eyebrow: "Background",
         paragraphs: [
           "The Colorado River system supplies 36% of Arizona's total water use and has experienced extensive drought for nineteen years, leaving reservoir levels at Lake Mead historically low. Arizona has responded with strategies like underground water storage and reclaimed water — and Waterbot exists to help residents access water-related information, track usage, and navigate the challenges of scarcity.",
         ],
       },
       {
+        type: "image",
+        src: "/images/waterbot/screen4.png",
+        alt: "Arizona Long-Term Drought map for June 2024, showing severe to exceptional drought conditions across much of the state",
+        caption: "Arizona's long-term drought conditions, June 2024 — the problem Waterbot exists to help residents navigate.",
+        fit: "contain",
+      },
+      {
         type: "text",
-        heading: "Research",
+        eyebrow: "Research",
+        heading: "Who we talked to",
         paragraphs: [
-          "We engaged a diverse group of native Arizona residents — students, long-term residents of seven-plus years, business owners, and government officials across Phoenix, Prescott, Northern Arizona, and Tucson — through interviews and usability tests on questions people actually wanted answered, from clean water initiatives to drinking water safety to how Arizona's situation compares to California's.",
+          "We engaged a diverse group of native Arizona residents through interviews and usability tests on questions people actually wanted answered, from clean water initiatives to drinking water safety to how Arizona's situation compares to California's.",
+          "Locations: Phoenix, Prescott, Northern Arizona, and Tucson. Profiles: students, long-term residents of seven-plus years, business owners, and government officials.",
         ],
       },
       {
-        type: "quote",
-        quote:
-          "It's cool how the chatbot collects all the data and puts it in a brief answer.",
-        attribution: "Usability test participant",
+        type: "list",
+        heading: "What people asked it",
+        items: [
+          "What are clean water projects in Arizona?",
+          "How safe is the water in Arizona to drink?",
+          "Is it safe to swim in Lake Johnson?",
+          "Do we have the same water shortage issue in Arizona as in California?",
+          "What is the current water conservation policy in Arizona?",
+        ],
       },
       {
-        type: "list",
+        type: "quote-grid",
+        heading: "What testers said",
+        quotes: [
+          "It's cool how the chatbot collects all the data and puts it in a brief answer.",
+          "I didn't expect to get such specific answers to my questions. I was excited and happy about that.",
+        ],
+      },
+      {
+        type: "text",
+        eyebrow: "Storytelling",
+        heading: "Three residents, three different needs",
+        paragraphs: [
+          "Sarah, a busy mother, sought information on clean water initiatives but wanted links for further exploration. Jessica, a former Californian, found the chatbot's brief answers on drinking water safety inadequate for sharing with her family. Michael, questioning the quality of his filtered water, discovered parallels to California's water shortages but desired more resources.",
+          "Their experiences pointed to the same gap: a community eager for information on water conservation, with the chatbot serving as a vital link to help them advocate for sustainable practices — if it gave them enough to work with.",
+        ],
+      },
+      {
+        type: "text",
+        eyebrow: "Observations",
         heading: "What usability testing surfaced",
-        items: [
-          "Accuracy — no way to verify Waterbot's answers → add a 'Resources' link after each response",
-          "New-chat navigation — the 'New Chat' button was hard to find mid-conversation → move it closer to the prompt area",
-          "Resource links opened in the same tab, losing the conversation → open them in a new tab instead",
-          "Response-length preference varied by user → add concise / balanced / detailed filter tabs and a 'know more' button",
-          "Trust and transparency — some users avoided links entirely → make links opt-in rather than automatic",
+        paragraphs: [
+          "Participants shared their daily water usage and the challenges they ran into finding water-related information. Each person interacted with Waterbot differently, which gave us five distinct, specific problems to design against.",
+        ],
+      },
+      {
+        type: "text",
+        heading: "01 — Accuracy",
+        paragraphs: [
+          "Users face a significant challenge, as there is no readily available resource to verify the accuracy of information Waterbot provides.",
         ],
       },
       {
         type: "image",
-        src: "/images/waterbot/screen3.png",
-        alt: "Annotated screenshot highlighting a resource link in the Waterbot interface that navigates away from the chat",
-        caption: "Annotating the resource-link issue surfaced in usability testing.",
+        src: "/images/waterbot/screen1.png",
+        alt: "Waterbot chatbot response about Arizona's water sources, annotated as part of the accuracy observation",
+        caption: "Suggestion: add a “Resources” link after a response, so people can verify what they're told.",
+        fit: "contain",
       },
       {
         type: "text",
-        heading: "Redesign proposal",
+        heading: "02 — New-chat navigation",
         paragraphs: [
-          "Based on severity, we recommended addressing the New Chat placement first, then resource links, error messaging, and the broader interface. We built Figma wireframes for the redesign: the prompt area moved left to follow natural eye movement, the right panel collapses into a hamburger menu for smaller screens, 'New Chat' sits at the top of the search area, resource tags build trust, and an accordion panel holds a 'How It Works' section and FAQ — deliberately separating Waterbot's identity from the generic ChatGPT/Google mental model.",
+          "Users frequently struggle to locate the “New Chat” button, particularly when they're already engaged in a prompt search.",
+        ],
+      },
+      {
+        type: "image",
+        src: "/images/waterbot/screen2.png",
+        alt: "Waterbot interface with the New Chat button highlighted, annotated as part of the new-chat-navigation observation",
+        caption: "Suggestion: move “New Chat” closer to the prompt area for easier access.",
+        fit: "contain",
+      },
+      {
+        type: "text",
+        heading: "03 — Resource-link navigation",
+        paragraphs: [
+          "Users have difficulty returning to the main site after clicking a resource link, since those links redirect within the same tab.",
+        ],
+      },
+      {
+        type: "image",
+        src: "/images/waterbot/spei_chart.png",
+        alt: "Browser screenshot showing a Waterbot resource link navigating to the Arizona Department of Water Resources website in the same tab",
+        caption: "Suggestion: open resource links in a new tab, so people don't lose the conversation with Waterbot.",
+        fit: "contain",
+      },
+      {
+        type: "list",
+        heading: "04 — Response length, and 05 — trust and transparency",
+        items: [
+          "Users favor concise answers over lengthy explanations, though some prefer more detail depending on what they're looking for. Suggestion: a filtering feature with tabs for concise, balanced, and detailed responses, plus a 'know more' button for people who want it.",
+          "Users don't always prefer links, often out of concern about what they might encounter or a link failing — though some do want them for further reading. Suggestion: make links opt-in rather than automatic, so people choose whether to use them as a reference.",
+        ],
+      },
+      {
+        type: "text",
+        eyebrow: "Recommendations",
+        paragraphs: [
+          "Based on severity, we recommended addressing these in order: optimize “New Chat” button placement, introduce resource links and tags, enhance error messaging, and rethink the interface more broadly. Beyond fixing usability issues, these changes were meant to help Waterbot build its own identity, separate from the generic mental model of ChatGPT or Google.",
+        ],
+      },
+      {
+        type: "text",
+        eyebrow: "Prototype",
+        heading: "The redesign",
+        paragraphs: [
+          "We built Figma wireframes for the redesign: the prompt area moved left to follow natural eye movement, the right panel collapses into a hamburger menu on smaller screens, “New Chat” sits at the top of the search area for easy access, resource tags appear inline to build trust, and an accordion panel holds a “How It Works” section and FAQ for quick answers to common questions.",
         ],
       },
     ],
     result: [
-      "The Waterbot redesign proposal was recently shared by my professor on LinkedIn, who highlighted its innovative, practical approach to a real civic tool used by Arizona residents.",
+      "Waterbot is a real, shipped tool — built with support from ASU's Arizona Water Innovation Initiative and Impact Water Arizona — and this was a usability study and redesign proposal against the live product, not a conceptual exercise.",
+      "The redesign proposal was shared by my professor on LinkedIn, who highlighted its innovative, practical approach to a civic tool Arizona residents actually use.",
     ],
   },
   {
@@ -849,11 +1143,22 @@ export const projects: Project[] = [
     category: "Healthcare · Public Health",
     tagline:
       "A website helping people understand health information through easy-to-read resources and tools — a project whose design direction helped secure the funding that moved it into development.",
+    hook: "Our vision: all Arizonans have better access to reliable, understandable health information to make well-informed health decisions.",
     year: "2024",
     role: "UX/UI Design",
     team: "ASU Learning Enterprise team",
     timeline: "Ongoing — in development",
     client: "Arizona State University Learning Enterprise",
+    stats: [
+      {
+        value: "90%",
+        label: "of American adults struggle with health information that uses unfamiliar or complex terms",
+      },
+      {
+        value: "$7,798",
+        label: "a year — what someone with limited health literacy could expect to spend",
+      },
+    ],
     coverImage: {
       src: "/images/health-literacy/thumb.png",
       alt: "ASU Health Literacy website shown on a laptop with clinicians in the background photo",
@@ -869,53 +1174,136 @@ export const projects: Project[] = [
     blocks: [
       {
         type: "text",
-        heading: "Background and motivation",
+        eyebrow: "Background",
         paragraphs: [
           "Health literacy is crucial for public health — it lets people understand health information, navigate the healthcare system, and make informed decisions. Despite medical advances, many people struggle with basic health information, leading to poorer outcomes and higher costs. Improving health literacy means better, more equitable healthcare access.",
         ],
       },
       {
-        type: "text",
-        heading: "Empathize",
-        paragraphs: [
-          "I took part in a health-related workshop with healthcare representatives, where we conducted empathy mapping together, focused on understanding the challenges and needs people have around health literacy.",
-        ],
+        type: "quote",
+        quote:
+          "Health literacy is the ability to find, understand, and use quality information and services to inform health-related decisions and actions.",
+        attribution: "ASU Health Literacy",
       },
       {
-        type: "list",
-        heading: "What people said, thought, and felt",
-        items: [
-          "Says: 'I don't understand medical terms. I need simpler instructions.'",
-          "Thinks: 'Am I doing this right? What if I miss something important?'",
-          "Feels: Frustrated, anxious, and overwhelmed by complex health information",
-          "Wants: Clear explanations, bilingual support, and easy-to-use health management tools",
+        type: "image",
+        src: "/images/health-literacy/dschool.webp",
+        alt: "The Empathize, Define, Ideate, Prototype, Test design-thinking process diagram",
+        caption: "The process we followed, from empathizing with patients through testing a redesign.",
+        fit: "contain",
+      },
+      {
+        type: "text",
+        eyebrow: "Research",
+        heading: "Empathize",
+        paragraphs: [
+          "I took part in a health-related workshop with ASU healthcare representatives, where we conducted empathy mapping together — focused on understanding the challenges and needs people have around health literacy, with the aim of developing solutions that improve their healthcare experience.",
         ],
       },
       {
         type: "image",
         src: "/images/health-literacy/img6194.jpg",
         alt: "Photo from the ASU health literacy workshop with healthcare representatives",
+        caption: "Workshop with ASU healthcare representatives, conducting empathy mapping together.",
+      },
+      {
+        type: "list",
+        heading: "What we heard — says, thinks, does, feels",
+        items: [
+          "Says: “I’m far from the clinic.” “I don’t know the warning signs.” “I’m pregnant — my doctor says I have two things I don’t understand.”",
+          "Thinks: “I wonder what these headaches are?” “How does a traditional understanding of health conflict with what the clinic tells me?” “How can I consistently go to appointments?”",
+          "Does: Asks friends and family about their experience. Uses a blood pressure cuff at home. Sets her clocks differently for daylight savings.",
+          "Feels: Overwhelmed, intimidated, dealing with headaches, and worried about her baby.",
+        ],
+      },
+      {
+        type: "image",
+        src: "/images/health-literacy/screen1.png",
+        alt: "Empathy map board for a 45-year-old Arizona resident who immigrated from Mexico, built during the workshop",
+        caption: "The empathy-mapping board those notes were pulled from.",
+        fit: "contain",
+      },
+      {
+        type: "image-row",
+        images: [
+          {
+            src: "/images/health-literacy/img6233.jpg",
+            alt: "Close-up of a 'Says' empathy-map board from a parallel breakout group, with notes about a caregiving dynamic with a spouse",
+            caption: "A parallel breakout group mapped a different persona — notes on dismissing a doctor's advice and a caregiving spouse.",
+          },
+          {
+            src: "/images/health-literacy/img6235.jpg",
+            alt: "Close-up of a 'Feels' empathy-map board with notes including 'fear,' 'loss of power,' and 'emasculation'",
+            caption: "That same group's 'Feels' quadrant, surfacing themes of vulnerability and stigma around men's health.",
+          },
+        ],
+        fit: "contain",
       },
       {
         type: "text",
-        heading: "Design",
+        heading: "A persona to design for",
+        paragraphs: [
+          "From these sessions, we synthesized a persona to center the redesign on: Maria Gomez, a 45-year-old housekeeper in Arizona managing a recent Type 2 diabetes diagnosis and hypertension, with no primary care provider and limited access to Spanish-speaking healthcare.",
+          "Her challenges were concrete — medication instructions she couldn't fully understand in English, and a real knowledge gap around managing diabetes because of the language barrier. Her goals were just as concrete: manage her health effectively, get advice that respects her cultural background, and understand her own care without relying solely on family to translate.",
+        ],
+      },
+      {
+        type: "image",
+        src: "/images/health-literacy/persona2.jpg",
+        alt: "User persona: Maria Gomez, 45, a housekeeper in Arizona managing newly diagnosed Type 2 diabetes and hypertension",
+        fit: "contain",
+      },
+      {
+        type: "text",
+        eyebrow: "Ideate",
+        paragraphs: [
+          "During the Ideation stage, we generated creative ideas for improving health literacy based on insights from the empathy mapping workshop. Our goal was to develop user-friendly solutions that address the identified challenges.",
+          "We brainstormed various features, such as educational videos, multilingual support, and easy-to-read printed materials, to ensure that health information is accessible and comprehensible for all.",
+          "This stage involved collaborative thinking, refining concepts, and prioritizing ideas that empower individuals to manage their health more effectively.",
+        ],
+      },
+      {
+        type: "list",
+        heading: "What we proposed",
+        items: [
+          "An application with different language options, educational videos, and appointment scheduling.",
+          "Trained bilingual volunteers or professionals to help overcome language barriers.",
+          "A portal where prescriptions are centralized and can be picked up anytime, rather than during a single pickup window.",
+          "A community to turn to for help, plus telehealth clinics and urgent care services.",
+          "More in-depth health education.",
+          "Guidelines or papers to hand off to patients at the end of their visit.",
+          "Educational workshops in every city.",
+        ],
+      },
+      {
+        type: "image",
+        src: "/images/health-literacy/screen2.png",
+        alt: "Ideation sticky notes generated during the workshop",
+        caption: "Raw ideation notes from the session.",
+        fit: "contain",
+      },
+      {
+        type: "text",
+        eyebrow: "Design",
+        heading: "From wireframes to a working site",
         paragraphs: [
           "The first version was built from scratch — low-fidelity wireframes establishing structure, then high-fidelity prototypes refining visuals and interactivity. After collecting feedback, we made significant changes to improve usability and aesthetics.",
           "For the second version, I worked closely with the development team through several meetings to make sure the updated layout and features were technically feasible, then designed the mobile version so the experience stayed consistent while optimized for smaller screens.",
         ],
       },
       {
-        type: "image-row",
-        images: [
-          {
-            src: "/images/health-literacy/screen3.png",
-            alt: "High-fidelity desktop design for the ASU Health Literacy website",
-          },
-          {
-            src: "/images/health-literacy/screen4.png",
-            alt: "High-fidelity mobile design for the ASU Health Literacy website",
-          },
-        ],
+        type: "image",
+        src: "/images/health-literacy/screen3.png",
+        alt: "Five high-fidelity desktop page designs for the ASU Learner Health site: homepage, a course page, a news feed, an article, and a nutrition hub",
+        caption: "High-fidelity desktop designs — homepage, course pages, news, and content hubs.",
+        fit: "contain",
+      },
+      {
+        type: "image",
+        src: "/images/health-literacy/screen4.png",
+        alt: "Three high-fidelity mobile page designs for the ASU Health Literacy site: the landing page, the stats and goals section, and course and contact cards",
+        caption: "The mobile version of the Health Literacy landing page, optimized for smaller screens.",
+        fit: "contain",
       },
     ],
     result: [
@@ -929,6 +1317,7 @@ export const projects: Project[] = [
     category: "EdTech · Video",
     tagline:
       "Part of ASU, Learning Sparks Studio creates engaging video content that helps professors share their lessons with a global audience.",
+    hook: "Videos do more than just inform — they inspire, educate, and create lasting impact, one video at a time.",
     year: "2024",
     role: "UX/UI Design",
     team: "ASU Learning Enterprise, multidisciplinary team",
@@ -949,14 +1338,23 @@ export const projects: Project[] = [
     blocks: [
       {
         type: "text",
-        heading: "Background",
+        eyebrow: "Background",
         paragraphs: [
           "Learning Sparks Studio was created to bridge the gap between traditional education and modern learning experiences by harnessing the power of video — helping ASU professors share their expertise with a global audience.",
+          "Welcome to Learning Sparks Studio, where creativity meets learning science to ignite educational transformations: a world where videos do more than just inform, but inspire, educate, and create lasting impact.",
         ],
       },
       {
+        type: "image",
+        src: "/images/learning-sparks/design-thinking.png",
+        alt: "The Empathize, Define, Ideate, Prototype, Test design-thinking process diagram",
+        caption: "The design-thinking process behind the research.",
+        fit: "contain",
+      },
+      {
         type: "text",
-        heading: "Research",
+        eyebrow: "Research",
+        heading: "Empathize",
         paragraphs: [
           "Research included empathy mapping, a user journey map, and an interview with a professor persona about integrating video into teaching — covering excitement about the format, the time and technical challenges of producing it, and the features that would make a video platform worth adopting, like quizzes, polls, and engagement analytics.",
         ],
@@ -964,7 +1362,104 @@ export const projects: Project[] = [
       {
         type: "image",
         src: "/images/learning-sparks/empathy-map.png",
-        alt: "Empathy map for Learning Sparks Studio",
+        alt: "Empathy map for Learning Sparks Studio, covering what a professor persona thinks, feels, does, hears, says, and sees",
+        fit: "contain",
+      },
+      {
+        type: "image",
+        src: "/images/learning-sparks/pains-gains.png",
+        alt: "Pains and gains board: fears, frustrations, and obstacles on one side, needs, goals, and motivations on the other",
+        caption: "Pains and gains mapped during the same session.",
+        fit: "contain",
+      },
+      {
+        type: "text",
+        heading: "A persona to design for",
+        paragraphs: [
+          "From this research, we built a persona to center the design on: Sarah Tompson, a 35-year-old university professor at ASU with over ten years of teaching experience, based in Tempe and holding a PhD in Education. She's tech-savvy, passionate about innovative teaching methods, and always looking for new ways to engage her students.",
+        ],
+      },
+      {
+        type: "quote",
+        quote:
+          "Education should be dynamic and accessible. I want my students to feel excited about learning, no matter where they are.",
+        attribution: "Sarah Tompson, persona — university professor, ASU",
+      },
+      {
+        type: "image",
+        src: "/images/learning-sparks/user-persona.png",
+        alt: "User persona: Sarah Tompson, 35, a university professor at ASU with a PhD in Education",
+        fit: "contain",
+      },
+      {
+        type: "list",
+        heading: "Her goals and pain points",
+        items: [
+          "Goals: Create engaging, accessible educational content; reach a wider audience, including online and global learners; stay current with the latest educational technology.",
+          "Pain points: Limited time to create high-quality video content on her own; ensuring content is accessible to students with disabilities; balancing teaching responsibilities with content creation.",
+        ],
+      },
+      {
+        type: "text",
+        heading: "Mapping her journey",
+        paragraphs: [
+          "We mapped Sarah's journey from first hearing about Learning Sparks Studio through daily use — her actions and touchpoints at each phase, and how her confidence shifts from overwhelmed to validated as she moves from awareness through onboarding into regular use.",
+        ],
+      },
+      {
+        type: "image",
+        src: "/images/learning-sparks/sarah.png",
+        alt: "User journey map for Sarah Tompson, from awareness through consideration, decision, onboarding, and daily usage",
+        caption: "Sarah's journey from first hearing about the studio to confident daily use.",
+        fit: "contain",
+      },
+      {
+        type: "text",
+        eyebrow: "Design",
+        heading: "A working prototype",
+        paragraphs: [
+          "We help create content that delivers a global learning reach as well as powerful marketable value — the process leads faculty through content ideation and development from end to end.",
+          "We work to develop content that meets the aims and objectives of each project. From scriptwriting to communication coaching, cinematic production, and showcasing strategy, we support every stage.",
+          "Our content-creation method is built on the principles of learning science. The design team works with faculty and partners to develop a format and creation pathway that fits them, characterized by flexibility, versatility, creativity, and innovation.",
+        ],
+      },
+      {
+        type: "steps",
+        heading: "The six-stage process",
+        steps: [
+          { icon: "spark", label: "Vision" },
+          { icon: "clipboard", label: "Ideation" },
+          { icon: "swatch", label: "Creation" },
+          { icon: "camera", label: "Coaching" },
+          { icon: "camera", label: "Production" },
+          { icon: "spark", label: "Distribution" },
+        ],
+      },
+      {
+        type: "list",
+        heading: "Video styles",
+        items: [
+          "Trailer / Sizzle — a 1–2 minute cinematic piece for open-access platforms, built for market lead generation.",
+          "Distilled video — a tight 2–4 minute cut.",
+          "Promotional video — a punchy 30-second spot.",
+          "Expansive video — a full 6-plus minute deep dive.",
+        ],
+      },
+      {
+        type: "quote-grid",
+        heading: "What professors said",
+        quotes: [
+          "Thanks to the team for making the whole process easy to navigate, and the recording session professional, smooth, and supportive. — Rajesh Buch, PhD, MBA",
+          "I had a blast — just a great team of people, continually giving me positive feedback. They made it easy and I am grateful for their support. — Punya Mishra, Professor of Social Sciences",
+          "It was my absolute pleasure working with you. Your team was incredibly professional, and I had a blast. Looking forward to the next steps. — Robert LiKamWa, Professor of Anthropology",
+        ],
+      },
+      {
+        type: "image",
+        src: "/images/learning-sparks/main.jpg",
+        alt: "The Learning Sparks Studio prototype site, from the hero through about, process, video styles, portfolio, and testimonials",
+        caption: "The working prototype — from hero through video styles and testimonials.",
+        fit: "contain",
       },
     ],
     result: [
