@@ -5,15 +5,58 @@ export type Block =
       alt: string;
       caption?: string;
       orientation?: "landscape" | "portrait";
+      fit?: "cover" | "contain";
     }
-  | { type: "text"; heading?: string; paragraphs: string[] }
+  | { type: "text"; eyebrow?: string; heading?: string; paragraphs: string[] }
   | {
       type: "image-row";
       images: { src: string; alt: string; caption?: string }[];
       orientation?: "landscape" | "portrait";
     }
-  | { type: "quote"; quote: string; attribution?: string }
-  | { type: "list"; heading?: string; items: string[] };
+  | { type: "quote"; eyebrow?: string; quote: string; attribution?: string }
+  | { type: "list"; eyebrow?: string; heading?: string; items: string[] }
+  | {
+      type: "steps";
+      heading?: string;
+      steps: {
+        label: string;
+        icon: "camera" | "clipboard" | "swatch" | "spark";
+      }[];
+    }
+  | {
+      type: "numbered-grid";
+      heading?: string;
+      description?: string;
+      items: {
+        image: { src: string; alt: string };
+        title: string;
+        caption: string;
+      }[];
+    }
+  | {
+      type: "funnel";
+      eyebrow?: string;
+      heading?: string;
+      description?: string;
+      steps: { label: string; value: number }[];
+    }
+  | {
+      type: "quote-grid";
+      eyebrow?: string;
+      heading?: string;
+      description?: string;
+      quotes: string[];
+    }
+  | {
+      type: "decision";
+      number: string;
+      heading: string;
+      paragraphs: string[];
+      result?: string;
+      note?: string;
+      image: { src: string; alt: string };
+      imageSide: "left" | "right";
+    };
 
 export interface Project {
   slug: string;
@@ -26,6 +69,8 @@ export interface Project {
   team: string;
   timeline: string;
   client: string;
+  status?: string;
+  stats?: { value: string; label: string }[];
   coverImage: { src: string; alt: string };
   coverOrientation?: "landscape" | "portrait";
   coverVideo?: string;
@@ -47,16 +92,23 @@ export const projects: Project[] = [
     title: "OSAZ",
     category: "Beauty · AI",
     tagline:
-      "An AI-powered skincare app that reads a selfie and a short survey to recommend personalized skincare and a shade match — designed around diverse and melanin-rich skin tones from the first screen.",
-    hook: "What if your skincare app actually understood your skin tone?",
+      "OSAZ uses computer vision to read a selfie and match a tinted sunscreen shade. Most people never reached the recommendation — I audited the funnel, talked to users, and redesigned the survey and dashboard around trust.",
+    hook: "Every fix that moved the numbers made the product more honest.",
     year: "2025",
-    role: "UX/UI Design",
-    team: "Design collaboration",
-    timeline: "Prototype",
+    role: "UX/UI Designer (sole designer)",
+    team: "CTO, 2 engineers, 3 marketing specialists",
+    timeline: "8 weeks",
     client: "OSAZ",
+    status: "Shipped to 100% of users",
+    stats: [
+      { value: "↑26%", label: "Survey completion" },
+      { value: "↑22%", label: "Product conversions" },
+      { value: "↑37%", label: "AI trust score" },
+      { value: "↓18%", label: "Photo-step drop-off" },
+    ],
     coverImage: {
-      src: "/images/osaz/results.png",
-      alt: "OSAZ results screen showing a predicted skin condition and shade match",
+      src: "/images/osaz/thumb.png",
+      alt: "OSAZ selfie and skin-analysis results screens shown on two phones against a pink background",
     },
     coverOrientation: "portrait",
     thumbImage: {
@@ -65,78 +117,265 @@ export const projects: Project[] = [
     },
     thumbTone: "light",
     summary:
-      "A selfie-based AI skincare assessment, built to represent diverse skin tones well from onboarding onward.",
+      "A funnel audit and four research-backed decisions turned a selfie-based AI skin analysis into a flow people actually finish.",
     featured: true,
     blocks: [
       {
         type: "text",
-        heading: "The problem",
+        eyebrow: "Background",
         paragraphs: [
-          "Most skincare apps treat skin tone as an afterthought — a single generic recommendation flow that doesn't account for how differently skin conditions present, and how differently shade-matching works, across melanin-rich skin. OSAZ starts from the opposite assumption: skin analysis has to be personalized from the very first screen, not bolted on later.",
+          "OSAZ uses computer vision to analyze a selfie and recommend a tinted sunscreen shade. The original flow — a selfie, a short set of skin questions, then an AI-generated profile — ran on a third-party survey platform (Reliabl) bolted onto the OSAZ product. As the sole designer on the team, I was asked to find out why so few people were finishing it, and fix it.",
+        ],
+      },
+      {
+        type: "text",
+        eyebrow: "Problem framing",
+        heading: "Why so many people dropped off",
+        paragraphs: [
+          "I audited the flow end to end and pulled the funnel data myself. Fewer than half of users made it past the photo step, and only 2.3% completed a purchase. Something in the first few screens was losing almost everyone.",
+        ],
+      },
+      {
+        type: "funnel",
+        heading: "What the audit found",
+        description:
+          "Share of users reaching each step, before the redesign. The biggest single loss was at the photo step.",
+        steps: [
+          { label: "Photo step passed", value: 43.2 },
+          { label: "Survey completed", value: 18.7 },
+          { label: "Reached dashboard", value: 10.4 },
+          { label: "Clicked “Shop”", value: 4.9 },
+          { label: "Completed purchase", value: 2.3 },
+        ],
+      },
+      {
+        type: "quote-grid",
+        eyebrow: "User interviews",
+        heading: "What users told me",
+        description:
+          "To understand why people dropped off, I talked to users directly. Their answers matched what I'd found in the audit.",
+        quotes: [
+          "When I opened the survey it immediately turned on my camera and I didn't understand why.",
+          "The options looked like tags, so I didn't even realize they were the answers.",
+          "The shade names were confusing. I didn't really know which one matched me.",
+          "The results showed a condition I didn't even select.",
+        ],
+      },
+      {
+        type: "list",
+        eyebrow: "Current journey",
+        heading: "Four problems behind the numbers",
+        items: [
+          "No consent — the camera opened with no explanation, at the most sensitive step of the journey",
+          "Answers that didn't look like answers — choices were styled as small decorative tags",
+          "Vague shade names like “Cinnamon Kiss” gave people nothing to judge a match by",
+          "Results that broke trust — the dashboard listed conditions people hadn't selected, buttons like Retake didn't work, and the shop link sent people to Instagram",
         ],
       },
       {
         type: "image",
-        orientation: "portrait",
-        src: "/images/osaz/selfie.png",
-        alt: "OSAZ onboarding screen prompting the user to take a selfie in good lighting",
-        caption: "Onboarding opens with a selfie — the input the AI analysis is built on.",
+        src: "/images/osaz/redesign/old-pain.png",
+        alt: "Old OSAZ skin-tone and skin-type screens, powered by Reliabl, annotated with the pain points: unintuitive shade names and answer options that read as decorative tags",
+        caption: "The original survey, powered by a third-party platform (Reliabl).",
+        fit: "contain",
+      },
+      {
+        type: "image",
+        src: "/images/osaz/redesign/old-dash.png",
+        alt: "Old OSAZ results dashboard annotated: AI-predicted conditions that didn't match the user's answers, and long, text-heavy ingredient recommendations",
+        caption: "The original results dashboard.",
+        fit: "contain",
       },
       {
         type: "list",
-        heading: "A survey built for nuance",
+        eyebrow: "Goals",
+        heading: "What the redesign had to do",
         items: [
-          "Age, gender, and ethnicity — framed as inputs to personalization, not demographic boilerplate",
-          "Skin type, pigmentation, acne, keloids, sensitivity, eczema, and elasticity",
-          "Skin goals, current skincare routine, and ingredient preferences",
-          "Pregnancy status and allergies, so recommendations stay safe as well as personalized",
+          "Make every screen instantly understandable",
+          "Earn trust in the AI by explaining the photo step and showing results that match the person's answers",
+          "Make the shade match and the sunscreen recommendation obvious",
+          "Remove steps that weren't needed",
         ],
+      },
+      {
+        type: "text",
+        eyebrow: "Final solution",
+        heading: "Four changes to the survey",
+        paragraphs: [],
+      },
+      {
+        type: "decision",
+        number: "01",
+        heading: "Ask before opening the camera",
+        paragraphs: [
+          "Before the camera turns on, a short screen explains why the photo is needed, how to frame it, and asks for agreement to the terms. It also mentions that finishing the survey earns OSAZ reward points. People now choose to take the photo instead of being surprised by it.",
+        ],
+        result: "Photo-step drop-off fell 18%.",
+        image: {
+          src: "/images/osaz/redesign/consent.png",
+          alt: "OSAZ photo-consent screen explaining why the selfie is needed before the camera opens",
+        },
+        imageSide: "right",
+      },
+      {
+        type: "decision",
+        number: "02",
+        heading: "Replace tags with full-width answers",
+        paragraphs: [
+          "Each question gets its own screen, with large tappable options that read as answers. Selecting one highlights it and reveals a send button beside it, so people confirm before moving on. A progress bar shows how far along they are.",
+        ],
+        note: "Tapping an option changes its color to show it's selected. The send button appears beside the option to submit the answer.",
+        image: {
+          src: "/images/osaz/redesign/age.png",
+          alt: "OSAZ age question with a full-width option selected and a send button revealed beside it",
+        },
+        imageSide: "left",
+      },
+      {
+        type: "decision",
+        number: "03",
+        heading: "Show the shade, name it plainly",
+        paragraphs: [
+          "The selfie pre-selects a tone on a ten-step strip, with a plain label such as “Medium-Deep Brown” instead of a marketing name. The copy says it's a best guess, and people can adjust it now or later.",
+        ],
+        note: "Shade match is pre-selected from the selfie. Users can manually adjust it to their preference.",
+        image: {
+          src: "/images/osaz/shade-match.png",
+          alt: "OSAZ shade-match screen with a ten-step skin-tone strip and Medium-Deep Brown selected",
+        },
+        imageSide: "right",
+      },
+      {
+        type: "decision",
+        number: "04",
+        heading: "Explain skin terms in place",
+        paragraphs: [
+          "Terms like “combination skin” or “keloids” made people hesitate. An info icon on each option opens a short definition inside the option itself, so nobody has to leave the question to understand it.",
+        ],
+        note: "The touch target for info icons is limited to the icon, so tapping elsewhere still selects the option.",
+        image: {
+          src: "/images/osaz/redesign/skintype-expanded.png",
+          alt: "OSAZ skin-type question with the definition of oily skin expanded in place",
+        },
+        imageSide: "left",
       },
       {
         type: "image-row",
         orientation: "portrait",
         images: [
           {
-            src: "/images/osaz/pigmentation.png",
-            alt: "OSAZ survey screen asking about skin pigmentation level",
+            src: "/images/osaz/redesign/revisit.png",
+            alt: "OSAZ welcome-back screen for resuming an unfinished survey",
+            caption: "Resume where you left off.",
           },
           {
-            src: "/images/osaz/ethnicity.png",
-            alt: "OSAZ survey screen with an inclusive list of ethnicity options",
+            src: "/images/osaz/selfie.png",
+            alt: "OSAZ guided selfie screen",
+            caption: "Guided selfie.",
+          },
+          {
+            src: "/images/osaz/redesign/acne.png",
+            alt: "OSAZ acne question with an inline information note",
+            caption: "Shared context, in place.",
+          },
+          {
+            src: "/images/osaz/redesign/account.png",
+            alt: "OSAZ create-account screen shown after the survey",
+            caption: "Sign-up comes after the survey, not before.",
           },
         ],
       },
       {
         type: "text",
-        heading: "Shade-matching the user can trust",
+        eyebrow: "Solution integration",
+        heading: "Results that match what people said",
         paragraphs: [
-          "Rather than silently assigning a shade, OSAZ shows its work: the AI proposes a match from the selfie, and the user can see exactly where it landed on the scale and adjust it themselves. Letting people correct the system — instead of asking them to simply accept it — is what turns an AI guess into something people are willing to trust.",
-        ],
-      },
-      {
-        type: "image",
-        orientation: "portrait",
-        src: "/images/osaz/shade-match.png",
-        alt: "OSAZ shade-match screen with an adjustable skin tone scale and a selected shade",
-        caption: "An adjustable AI shade match, not a locked-in guess.",
-      },
-      {
-        type: "text",
-        heading: "From survey to recommendation",
-        paragraphs: [
-          "The selfie and survey feed a results screen that states a likely skin condition in plain language, shows the matched shade, and moves straight into product recommendations — turning a long intake flow into a single, legible payoff.",
+          "The redesigned dashboard leads with one clear skin-analysis card, with a note that the result is not medical advice. Below it sits the matched shade and a single recommended product. Long ingredient text became a collapsible “Do's and Don'ts” section, and purchase happens in the product with Subscribe & Save or a one-time option and a floating cart — instead of sending people to Instagram.",
         ],
       },
       {
         type: "image",
         orientation: "portrait",
         src: "/images/osaz/results.png",
-        alt: "OSAZ results screen showing a predicted skin condition, shade match, and product recommendations",
-        caption: "The payoff screen: a plain-language skin read, shade match, and recommendations.",
+        alt: "Redesigned OSAZ dashboard showing a single skin-analysis card naming a likely condition, with retake and share links",
+        caption: "One skin-analysis card, with a disclaimer that it isn't medical advice.",
+      },
+      {
+        type: "image-row",
+        orientation: "portrait",
+        images: [
+          {
+            src: "/images/osaz/redesign/pricing.png",
+            alt: "OSAZ product card with shade selection and Subscribe & Save or one-time purchase",
+            caption: "Shade, plan, price.",
+          },
+          {
+            src: "/images/osaz/redesign/cart.png",
+            alt: "OSAZ floating cart with two items and a checkout total",
+            caption: "In-app cart.",
+          },
+          {
+            src: "/images/osaz/redesign/retake.png",
+            alt: "OSAZ retake-survey confirmation dialog",
+            caption: "A working retake, with a nudge.",
+          },
+        ],
+      },
+      {
+        type: "image",
+        src: "/images/osaz/redesign/new-dash-desktop.png",
+        alt: "Redesigned OSAZ dashboard on desktop, showing the skin-analysis card and recommended TINT sunscreen",
+        caption: "The same dashboard, reflowed for desktop.",
+        fit: "contain",
+      },
+      {
+        type: "quote",
+        eyebrow: "Outcome",
+        quote: "AI trust score up 37%. Product conversions up 22%.",
+      },
+      {
+        type: "text",
+        paragraphs: [
+          "The redesign was tested with existing users, then rolled out gradually so we could measure each change across the whole flow.",
+        ],
+      },
+      {
+        type: "text",
+        eyebrow: "Design system",
+        heading: "A small system so the team could ship fast",
+        paragraphs: [
+          "I set up brand and semantic color tokens, a type hierarchy, an 8-point spacing scale, and the core components: skin-analysis cards, ingredient guidance, buttons, and the cart. Every screen in the handoff file has notes for behavior a static frame can't show, which kept the two engineers moving without waiting on me.",
+        ],
+      },
+      {
+        type: "image",
+        src: "/images/osaz/redesign/components.png",
+        alt: "OSAZ component library: skin-analysis cards, ingredient guidance, button states, and the cart",
+        fit: "contain",
+      },
+      {
+        type: "list",
+        eyebrow: "Reflection",
+        heading: "What I learned",
+        items: [
+          "Trust was the real problem. Every fix that moved the numbers made the product more honest: asking before using the camera, naming shades plainly, and showing results that match the person's answers.",
+          "Quick conversations with users pinpointed issues the funnel could only hint at.",
+          "Working closely with the CTO and engineers from week one kept the redesign feasible inside eight weeks.",
+        ],
+      },
+      {
+        type: "list",
+        heading: "Next steps",
+        items: [
+          "Improve the clarity and accuracy of the AI analysis itself",
+          "Keep testing the mobile flow for consistency",
+          "Deepen personalization to lift conversions further",
+        ],
       },
     ],
     result: [
-      "OSAZ exists as a high-fidelity prototype, built around a conviction that AI skincare tools earn trust through transparency and inclusion, not just accuracy — an adjustable shade match, an ethnicity question asked directly, and skin-condition language a non-dermatologist can actually read.",
+      "OSAZ's redesigned survey and dashboard shipped to 100% of users after an eight-week redesign: survey completion up 26%, product conversions up 22%, AI trust score up 37%, and photo-step drop-off down 18% — measured by testing with existing users, then rolling out gradually.",
+      "A note on image quality: the pricing card and the retake-confirmation screen are still cropped from a zoomed screenshot capture, so they read softer than the rest of this page — I'll swap them for full-resolution exports once I have them. Everything else here is a full-resolution screen.",
     ],
   },
   {
