@@ -10,8 +10,8 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <p className="font-display text-2xl text-ink">Gulzar Alshan</p>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-ink-soft">
-              Product Designer &amp; UX Researcher based in the U.S., currently
-              open to Product Designer roles.
+              Product Designer &amp; UX Researcher, currently open to Product
+              Designer roles.
             </p>
           </div>
 
@@ -60,11 +60,6 @@ export default function Footer() {
                 >
                   LinkedIn
                 </a>
-              </li>
-              <li>
-                <Link href="/resume" className="hover:text-ink">
-                  Resume
-                </Link>
               </li>
             </ul>
           </div>

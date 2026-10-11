@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Eyebrow from "@/components/Eyebrow";
 import Reveal from "@/components/Reveal";
 import CopyEmail from "@/components/CopyEmail";
@@ -38,31 +37,18 @@ export default function ContactPage() {
       </Reveal>
 
       <Reveal delay={0.16}>
-        <div className="mt-14 grid gap-8 border-t border-line pt-10 sm:grid-cols-2">
-          <div>
-            <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-ink-faint">
-              LinkedIn
-            </p>
-            <a
-              href="https://www.linkedin.com/in/gulzar-alshan"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-2 inline-block text-lg text-ink underline decoration-line-strong decoration-1 underline-offset-4 hover:decoration-ink"
-            >
-              linkedin.com/in/gulzar-alshan
-            </a>
-          </div>
-          <div>
-            <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-ink-faint">
-              Resume
-            </p>
-            <Link
-              href="/resume"
-              className="mt-2 inline-block text-lg text-ink underline decoration-line-strong decoration-1 underline-offset-4 hover:decoration-ink"
-            >
-              Request resume
-            </Link>
-          </div>
+        <div className="mt-14 border-t border-line pt-10">
+          <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-ink-faint">
+            LinkedIn
+          </p>
+          <a
+            href="https://www.linkedin.com/in/gulzar-alshan"
+            target="_blank"
+            rel="noreferrer"
+            className="mt-2 inline-block text-lg text-ink underline decoration-line-strong decoration-1 underline-offset-4 hover:decoration-ink"
+          >
+            linkedin.com/in/gulzar-alshan
+          </a>
         </div>
       </Reveal>
     </div>
