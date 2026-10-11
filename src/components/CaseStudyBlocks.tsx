@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { Block } from "@/data/projects";
-import { dims, safeCapPx } from "@/lib/osazImageDims";
+import { dims, safeCapPx } from "@/lib/imageDims";
 import Reveal from "./Reveal";
 
 const stepIcons = {
@@ -290,6 +290,38 @@ function CaseStudyBlock({ block }: { block: Block }) {
           : block.images.length >= 4
             ? "sm:grid-cols-2"
             : "sm:grid-cols-3";
+      if (block.fit === "contain") {
+        return (
+          <Reveal>
+            <div className={`grid gap-6 sm:gap-8 ${cols}`}>
+              {block.images.map((img, i) => {
+                const d = dims(img.src);
+                return (
+                  <figure key={i}>
+                    <div className="overflow-hidden rounded-2xl border border-line bg-white">
+                      <Image
+                        src={img.src}
+                        alt={img.alt}
+                        width={d.w}
+                        height={d.h}
+                        quality={95}
+                        unoptimized
+                        sizes="(min-width: 640px) 45vw, 100vw"
+                        className="h-auto w-full"
+                      />
+                    </div>
+                    {img.caption && (
+                      <figcaption className="mt-3 text-sm text-ink-faint">
+                        {img.caption}
+                      </figcaption>
+                    )}
+                  </figure>
+                );
+              })}
+            </div>
+          </Reveal>
+        );
+      }
       return (
         <Reveal>
           <div className={`grid gap-4 sm:gap-6 ${cols}`}>

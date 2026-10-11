@@ -12,6 +12,7 @@ export type Block =
       type: "image-row";
       images: { src: string; alt: string; caption?: string }[];
       orientation?: "landscape" | "portrait";
+      fit?: "cover" | "contain";
     }
   | { type: "quote"; eyebrow?: string; quote: string; attribution?: string }
   | { type: "list"; eyebrow?: string; heading?: string; items: string[] }
@@ -108,12 +109,12 @@ export const projects: Project[] = [
     ],
     coverImage: {
       src: "/images/osaz/thumb.png",
-      alt: "OSAZ selfie and skin-analysis results screens shown on two phones against a pink background",
+      alt: "OSAZ skin-type survey screens, one with an option selected and one with its definition expanded, shown on two phones against a red gradient background",
     },
     coverOrientation: "portrait",
     thumbImage: {
       src: "/images/osaz/thumb.png",
-      alt: "OSAZ selfie and skin-analysis results screens shown on two phones against a pink background",
+      alt: "OSAZ skin-type survey screens, one with an option selected and one with its definition expanded, shown on two phones against a red gradient background",
     },
     thumbTone: "light",
     summary:
@@ -386,10 +387,11 @@ export const projects: Project[] = [
       "A patient-centered platform developed with Mayo Clinic and ASU to collect cancer-treatment toxicity data through simple, conversational AI surveys — making it easier to track symptoms, support timely care, and improve treatment decisions.",
     hook: "What if tracking the side effects of cancer treatment felt more like being heard — and less like filling out a form?",
     year: "2025",
-    role: "UX/UI Design, Research",
-    team: "Team of 3",
-    timeline: "4 months",
+    role: "Product Designer",
+    team: "3 product designers and an engineer, with Mayo Clinic oncologists",
+    timeline: "October – December 2024",
     client: "Arizona State University × Mayo Clinic",
+    status: "Presented to Mayo Clinic oncologists",
     coverImage: {
       src: "/images/curo/thumb.png",
       alt: "Curo app and clinician dashboard shown on a phone and laptop",
@@ -405,7 +407,7 @@ export const projects: Project[] = [
     blocks: [
       {
         type: "text",
-        heading: "Background and motivation",
+        eyebrow: "Background",
         paragraphs: [
           "When we began the Curo project, we were driven by a simple but powerful question: how might we make it easier for cancer patients to share how they truly feel during treatment?",
           "Cancer treatment is incredibly taxing — not only physically, but emotionally. We learned that patients often struggle to communicate their side effects clearly and consistently, which makes it harder for clinicians to respond in time. In many cases, important symptoms go unreported. This gap inspired our mission.",
@@ -413,7 +415,16 @@ export const projects: Project[] = [
         ],
       },
       {
+        type: "text",
+        eyebrow: "Problem framing",
+        heading: "The problem",
+        paragraphs: [
+          "Patients undergoing cancer treatment are asked to complete long, jargon-heavy questionnaires, so symptom reporting is inconsistent, late, and often incomplete. Clinicians are left with noisy, unstructured data that makes it hard to link symptoms to drugs or spot escalation in time to intervene.",
+        ],
+      },
+      {
         type: "list",
+        eyebrow: "Literature review",
         heading: "What the literature told us about PRO-CTCAE reporting",
         items: [
           "124 different symptoms to track, measured in inconsistent ways (0–4 scales or yes/no) with no simple way to combine scores",
@@ -424,19 +435,76 @@ export const projects: Project[] = [
       },
       {
         type: "text",
+        eyebrow: "Field research",
         heading: "Observership at Mayo Clinic",
         paragraphs: [
           "For primary research, we had the opportunity to shadow Dr. Irbaz Riaz at Mayo Clinic. We met and spoke with patients directly, and came to understand the real-life problems with symptom reporting and toxicity tracking first-hand — not just from literature.",
+          "Altogether, the research behind Curo drew on dozens of papers and clinical sources, interviews with 6 oncologists, and conversations with 11 patients.",
+        ],
+      },
+      {
+        type: "image-row",
+        images: [
+          {
+            src: "/images/curo/screen1.png",
+            alt: "Statue outside the Mayo Clinic building visited during the observership",
+            caption: "On site at Mayo Clinic.",
+          },
+          {
+            src: "/images/curo/screen2.png",
+            alt: "Mayo Clinic ID badge held up in front of the Mayo Clinic Main Entrance sign",
+            caption: "Credentialed for the observership.",
+          },
+          {
+            src: "/images/curo/screen3.png",
+            alt: "Standing outside the Mayo Clinic Cancer Center building in Phoenix",
+            caption: "Outside the Mayo Clinic Cancer Center, Phoenix.",
+          },
+        ],
+      },
+      {
+        type: "text",
+        eyebrow: "Research findings",
+        heading: "What patients and providers need",
+        paragraphs: [
+          "65% of adults find healthcare overwhelming and spend roughly 8 hours a month coordinating care — complex scheduling, unclear medical instructions, and the stress of navigating the system. Providers, meanwhile, are working against outdated tools, high administrative load, and burnout.",
+          "On the technology side, the clearest opportunities were user-friendly scheduling, telemedicine (77% patient preference), AI-assisted scheduling, and multilingual support — all pointing toward the same conclusion: reduce friction wherever the patient or the clinician has to work around the tool instead of with it.",
         ],
       },
       {
         type: "image",
-        src: "/images/curo/screen1.png",
-        alt: "Statue outside the Mayo Clinic building visited during the observership",
-        caption: "On site at Mayo Clinic during the observership with Dr. Irbaz Riaz.",
+        src: "/images/curo/strategies.png",
+        alt: "Diagram of five strategies to improve patient experience: enhancing communication, patient education and engagement, empathy and emotional support, care coordination and continuity, and physical environment and amenities",
+        caption: "The five strategies we designed around to improve patient experience.",
+        fit: "contain",
+      },
+      {
+        type: "text",
+        eyebrow: "User personas",
+        heading: "Who we designed for",
+        paragraphs: [
+          "Two personas anchored every decision: an oncologist who needs an accurate, low-effort signal from his patients, and a patient who needs symptom reporting that doesn't feel like homework.",
+        ],
+      },
+      {
+        type: "image-row",
+        fit: "contain",
+        images: [
+          {
+            src: "/images/curo/screen4.png",
+            alt: "Persona slide for Dr. Daniel, a 47-year-old oncologist, listing his pain points and needs",
+            caption: "Dr. Daniel, oncologist.",
+          },
+          {
+            src: "/images/curo/screen5.png",
+            alt: "Persona slide for John Davidson, a 54-year-old retired teacher and patient, listing his pain points and needs",
+            caption: "John Davidson, patient.",
+          },
+        ],
       },
       {
         type: "list",
+        eyebrow: "Objectives",
         heading: "Objectives and use case",
         items: [
           "AI Conversational Symptom Tracker — an AI-powered chatbot that guides patients through a short, personalized conversation to report symptoms accurately",
@@ -446,59 +514,175 @@ export const projects: Project[] = [
       },
       {
         type: "image",
-        src: "/images/curo/frame6.png",
-        alt: "Doctor's journey map showing mood, pain points, and opportunities across the symptom-review workflow",
-        caption: "Doctor's journey map, built from the Mayo Clinic observership and interviews.",
-      },
-      {
-        type: "image",
-        src: "/images/curo/screen4.png",
-        alt: "Persona slide for Dr. Daniel, an oncologist, listing pain points and needs",
-        caption: "One of the clinician personas that shaped Curo's reporting view.",
+        src: "/images/curo/group464.png",
+        alt: "Sample chatbot conversation between Remi and a patient named Sarah checking in about fatigue during Docetaxel treatment",
+        caption: "A sample conversation: Remi checking in with a patient on Docetaxel.",
+        fit: "contain",
       },
       {
         type: "text",
-        heading: "From sketch to screen",
+        eyebrow: "Synthesis",
+        heading: "Affinity mapping",
+        paragraphs: [
+          "We sorted everything from the research — interview notes, observations, feature ideas — into clusters for the patient app and the doctor's portal, so the feature list came from evidence rather than assumption.",
+        ],
+      },
+      {
+        type: "image",
+        src: "/images/curo/group454.png",
+        alt: "Affinity map clustering research findings into groups like user flow, doctor features, chat features, and patient monitoring",
+        caption: "Grouping research findings into patient-app and doctor-portal feature clusters.",
+        fit: "contain",
+      },
+      {
+        type: "text",
+        eyebrow: "Journey mapping",
+        heading: "Patient's and doctor's journey",
+        paragraphs: [
+          "We mapped mood, pain points, and opportunities across the full reporting workflow for both personas — from receiving the survey through to treatment feedback.",
+        ],
+      },
+      {
+        type: "image-row",
+        fit: "contain",
+        images: [
+          {
+            src: "/images/curo/frame7.png",
+            alt: "Emily's patient journey map showing mood, pain points, and opportunities from receiving the survey through seeking an alternative solution",
+            caption: "Emily's journey, as a patient.",
+          },
+          {
+            src: "/images/curo/frame6.png",
+            alt: "Dr. Daniel's journey map showing mood, pain points, and opportunities from distributing the survey through exploring an alternative solution",
+            caption: "Dr. Daniel's journey, as a clinician.",
+          },
+        ],
+      },
+      {
+        type: "text",
+        eyebrow: "Information architecture",
+        heading: "Structuring two different apps",
+        paragraphs: [
+          "Curo is really two products sharing one data model: a doctor's portal built around reports and patients, and a patient's application built around the chatbot, treatment, and notes.",
+        ],
+      },
+      {
+        type: "image-row",
+        fit: "contain",
+        images: [
+          {
+            src: "/images/curo/group3.png",
+            alt: "Information architecture diagram for the doctor's portal: dashboard, schedule, reports (drug and patient statistics), patients, inbox",
+            caption: "Doctor's portal.",
+          },
+          {
+            src: "/images/curo/group4.png",
+            alt: "Information architecture diagram for the patient's application: home page (treatment, resources, notes, reports, chatbot), schedule, reports, user profile",
+            caption: "Patient's application.",
+          },
+        ],
+      },
+      {
+        type: "text",
+        eyebrow: "From sketch to screen",
         paragraphs: [
           "Before any of it was pixels, it was paper. The home screen's task list, the bottom nav, and the chatbot — nicknamed Remi — all started as a hand-drawn sketch: what Remi says first, where voice versus typed versus image input lives, how a patient gets from 'I want to report my symptoms' to actually sending them.",
         ],
       },
       {
+        type: "image-row",
+        fit: "contain",
+        images: [
+          {
+            src: "/images/curo/aa.png",
+            alt: "Hand-drawn paper wireframe sketch of the Curo home screen, chatbot flow, and symptom report screens",
+            caption: "Early sketches of the home screen, chatbot flow, and symptom reporting.",
+          },
+          {
+            src: "/images/curo/img8597.png",
+            alt: "Hand-drawn paper sketch working out the clinician chart-review layout and reports structure",
+            caption: "Working out the clinician-facing chart review and reports structure.",
+          },
+        ],
+      },
+      {
         type: "image",
-        src: "/images/curo/aa.png",
-        alt: "Hand-drawn paper wireframe sketch of the Curo home screen, chatbot flow, and symptom report screens",
-        caption: "Early paper wireframes for the home screen, the Remi chatbot flow, and symptom reporting.",
+        src: "/images/curo/screen6.png",
+        alt: "Low-fidelity wireframes showing appointments at a glance, a conversational survey, and a 3D body model for marking where pain is located",
+        caption:
+          "Low-fidelity wireframes: appointments at a glance, the conversational survey, and a 3D body map for marking pain location.",
+        fit: "contain",
       },
       {
         type: "text",
-        heading: "Design decisions",
+        eyebrow: "Design decisions",
         paragraphs: [
           "Every decision traced back to the same goal: reduce the burden on patients while giving clinicians a clearer signal. The conversational tracker replaces a long generic survey with a short, adaptive conversation. The clinician-facing reports replace raw survey exports with filterable, scannable toxicity tables so a drug's side-effect pattern is visible at a glance.",
         ],
       },
       {
         type: "image-row",
+        orientation: "portrait",
         images: [
           {
             src: "/images/curo/group452.png",
             alt: "Curo mobile app treatment plan screen listing active medications",
+            caption: "Treatment plan.",
           },
           {
             src: "/images/curo/group453.png",
             alt: "Curo mobile app screen in the symptom-reporting flow",
+            caption: "Symptom report.",
+          },
+          {
+            src: "/images/curo/group456.png",
+            alt: "Curo mobile app Notes screen showing a dated log of symptom entries, including one with an attached photo",
+            caption: "Symptom notes.",
+          },
+        ],
+      },
+      {
+        type: "text",
+        eyebrow: "Reporting dashboard",
+        heading: "A clearer signal for clinicians",
+        paragraphs: [
+          "Raw survey exports became filterable, scannable tables — by drug and by patient — that a clinician can drill into for the full toxicity picture.",
+        ],
+      },
+      {
+        type: "image-row",
+        fit: "contain",
+        images: [
+          {
+            src: "/images/curo/frame2.png",
+            alt: "Clinician-facing Curo dashboard showing a filterable drug toxicity report table",
+            caption: "Drug reports, filterable by class, route, and toxicity grade.",
+          },
+          {
+            src: "/images/curo/frame3.png",
+            alt: "Clinician-facing Curo dashboard showing a filterable patient toxicity report table",
+            caption: "Patient reports, filterable by cancer stage and toxicity grade.",
           },
         ],
       },
       {
         type: "image",
-        src: "/images/curo/frame2.png",
-        alt: "Clinician-facing Curo dashboard showing a filterable drug toxicity report table",
-        caption: "The clinician reporting dashboard — filterable by drug class, dosage, and toxicity grade.",
+        src: "/images/curo/screen7.png",
+        alt: "Drug detail page for Docetaxel showing its mechanism of action, therapeutic uses, risk factors, and a body map of common toxicities",
+        caption: "Drilling into a single drug — Docetaxel — for its mechanism, toxicities, and risk factors.",
+        fit: "contain",
+      },
+      {
+        type: "image",
+        src: "/images/curo/screen8.png",
+        alt: "A patient's symptom frequency and severity chart, compared across treatment cycles",
+        caption: "A patient's symptom frequency and severity, compared across treatment cycles.",
+        fit: "contain",
       },
     ],
     result: [
       "Curo may have started as a student project, but the reaction it received made it feel like something much more.",
-      "The highlight came when we presented Curo at ASU to a group of doctors from Mayo Clinic. Their response was more than we could've hoped for — they loved it. Their excitement and positive feedback validated the four months we'd spent interviewing, researching, designing, and prototyping as a team of three.",
+      "The highlight came when we presented Curo at ASU to a group of doctors from Mayo Clinic. Their response was more than we could've hoped for — they loved it. Their excitement and positive feedback validated the three months we'd spent interviewing, researching, designing, and prototyping with Mayo Clinic oncologists.",
     ],
   },
   {

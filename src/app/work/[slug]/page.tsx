@@ -6,7 +6,7 @@ import CaseStudyBlocks from "@/components/CaseStudyBlocks";
 import ContactCta from "@/components/ContactCta";
 import Reveal from "@/components/Reveal";
 import { getProject, projects } from "@/data/projects";
-import { dims, safeCapPx } from "@/lib/osazImageDims";
+import { dims, safeCapPx } from "@/lib/imageDims";
 
 export const instant = false;
 
